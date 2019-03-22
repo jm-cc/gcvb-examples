@@ -12,11 +12,12 @@ Packs:
   description : "A simple pack."
   Tests :
   - 
-    # The "Tests" node contains a sequence of mapping, with thoses keys : id, description, data, tags (optionnal), Tasks.
+    # The "Tests" node contains a sequence of mapping, with thoses keys : id, description, data, tags (optionnal), keep (optional), Tasks.
     id: single_test
     description: "A simple test"
     data : "simple_example"
     tags : [the_one]
+    keep : [] # keep is a list of python glob to store some files in the database
     Tasks:
       # The "Tasks" node contains a sequence of mapping, with thoses keys : executable, options, launch_command, nprocs, nthreads
     - executable : "echo"
