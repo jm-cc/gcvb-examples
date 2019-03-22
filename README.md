@@ -14,7 +14,7 @@ Output :
 - a "results" folder where the computation are actually computed.
 
 Process :
-- Given the input, the user can generate a *base*, that base can then be used for multiple *runs*. Each run compares with the reference and allows to check that everything is in order (or not).
+- Given the input, the user can generate a *base*, that base can then be used for multiple *runs*. Each run compares with the reference and allows to check that everything is in order (or not). A run can launch a subset of the test of a base through filter options.
 
 gcvb is an executable python module, with subcommands. It must be launch in the folder containing the input.
 
@@ -44,3 +44,22 @@ python -m gcvb --yaml-file simple_example.yaml generate
 # then, you can launch a run associated to the last base created :
 python -m gcvb compute
 ```
+
+## default_values.yaml
+
+This file shows how it is possible to set default values and how they are propagated.
+It is possible to define a "default_values" mapping that will fill some fields in the Tests, Tasks and Validations nodes.
+
+How to see how values are overrided, use the sub-command list that propagate default values.
+```
+python -m gcvb --yaml-file default_values.yaml list
+```
+
+## validation_example.yaml
+
+This example file shows the three ways to do a validation.
+- Using an absolute reference (configuration_independent).
+- Using a reference that is configuration dependent (configuration_dependent)
+- Using a comparison vith a file. (file_comparison)
+
+## template_example.yaml
