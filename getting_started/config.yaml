@@ -1,0 +1,3 @@
+machine_id: config_id
+submit_command: sh
+executables: {}

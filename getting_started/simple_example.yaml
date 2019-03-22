@@ -1,0 +1,31 @@
+# This is a sample gcvb base.
+# A pack containing a single test with two tasks.
+# See yaml specification.
+
+# Each gcvb yaml file contains a "Packs" Mapping. 
+Packs:
+# Inside the "Packs" Mapping, gcvb expects a Sequence of Mappings. We will call thoses mappings "pack".
+- 
+  #A pack.
+  #gcvb expects those nodes : pack_id, description, Tests. An optional default_values is possible (see default_values.yaml).
+  pack_id : "Simple"
+  description : "A simple pack."
+  Tests :
+  - 
+    # The "Tests" node contains a sequence of mapping, with thoses keys : id, description, data, tags (optionnal), Tasks.
+    id: single_test
+    description: "A simple test"
+    data : "simple_example"
+    tags : [the_one]
+    Tasks:
+      # The "Tasks" node contains a sequence of mapping, with thoses keys : executable, options, launch_command, nprocs, nthreads
+    - executable : "echo"
+      options : "a message"
+      launch_command : "{@job_creation[executable]} {@job_creation[options]}" #@job_creation[xx] will be replaced when writting the script for the job scheduler.
+      nprocs : 1
+      nthreads : 1
+    - executable : "cat"
+      options : "a.txt"
+      nprocs : 1
+      nthreads : 1
+      launch_command : "{@job_creation[executable]} {@job_creation[options]}"
