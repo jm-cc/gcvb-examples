@@ -1,0 +1,29 @@
+default_values:
+  task:
+    nprocs: "1"
+    nthreads: "1"
+    launch_command: "{@job_creation[executable]} {@job_creation[options]}"
+
+Packs:
+- pack_id : "Template test"
+  description : "Multiple tests generated via the template system"
+  Tests :
+  - id: T1_{letter}_{number[id]} # You must ensure that the id remains unique after template expansion.
+    type : "template"
+    template_files : "afolder" # indicate where are located the files that must be written by template expansion (inside the template folder in data)
+    data : "template_example"
+    # Template instantiation contains the replacement value. 
+    # Each mapping contains a list. Either a list of scalars or a list of mappings of scalars.
+    # In the current example, 6 tests will be generated (2*3)
+    template_instantiation: 
+      letter: [A,B]
+      number:
+      - {id: "1" ,roman: "I"}
+      - {id: "11",roman: "XI"}
+      - {id: "4" ,roman: "IV"}
+    description: "A test with a {letter} and a {number[id]}"
+    Tasks:
+    - executable : "echo"
+      options : "{letter} {number[roman]} {number[id]}"
+    - executable : "cat"
+      options : "{letter}.txt"

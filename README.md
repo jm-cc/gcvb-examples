@@ -75,3 +75,22 @@ data
             ├── ref2
             └── ref.yaml
 ```
+
+## template_example.yaml
+
+It is also possible to generate test using a template. Some value can be replaced inside the yaml file and in some input files also.
+
+In a test, the node *template_files* indicate where to find the files to be added. Like references, multiple templates can be associated with a test case.
+
+```
+├── data
+│   └── template_example
+│       ├── input
+│       ├── references
+│       └── templates
+│           └── afolder
+│               ├── A.txt
+│               └── B.txt
+```
+
+As usual, you can see which test will be generated using the subcommand *list*.

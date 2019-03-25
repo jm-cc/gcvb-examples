@@ -1,0 +1,5 @@
+machine_id: myconfig
+submit_command: sh
+executables:
+  diff: "python3 ../../../custom_scripts/diff.py" # job execution occurs in results/{id_run}/{id_test}
+  add_custom_metrics: "python3 ../../../custom_scripts/add_custom_metrics.py"
