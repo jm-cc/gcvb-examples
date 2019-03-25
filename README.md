@@ -94,3 +94,14 @@ In a test, the node *template_files* indicate where to find the files to be adde
 ```
 
 As usual, you can see which test will be generated using the subcommand *list*.
+
+# Modify a yaml input file with a python program.
+
+You may want to modify an input yaml file with a program. Or use an empty one and create your gcvb base using only a python script.
+
+It is possible to do so using the *--modifier* options and a module that implements "modify", a function that takes and returns a dict corresponding to the gcvb input. An example of such a script is *getting_started/custom_scripts/modifier_example.py* which just change the id of the tests. The input passed as parameter comes after the template expansion.
+
+You can experiment this feature with this command line in the getting started folder:
+```
+python -m gcvb --yaml-file validation_example.yaml --modifier "custom_scripts.modifier_example" list
+```
