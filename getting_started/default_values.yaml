@@ -1,0 +1,44 @@
+#default_values is a mapping of mapping.
+#Keys are test, task and validation. All of them optional.
+#One level below, keys can be every key expected in the Tests, Tasks, Validation
+default_values:
+  test:
+    keep: ["*.out"]
+  task:
+    nprocs: "1"
+    nthreads: "1"
+    launch_command: "{@job_creation[executable]} {@job_creation[options]}  > {@job_creation[full_id]}.out"
+
+Packs:
+- pack_id : "no_override"
+  description : "A pack that does not override default values."
+  Tests :
+  - id: test_1
+    description: "A simple test that does not override default values. (keep)"
+    data : "simple_example"
+    Tasks:
+    - executable : "echo"
+      options : "the first test"
+  - id: test_2
+    description: "A test that overrides"
+    data : "simple_example"
+    Tasks:
+    - executable : "echo"
+      options : "the second test"      
+    - executable : "cat"
+      options : "a.txt"
+      #launch_command is overrided
+      launch_command : "{@job_creation[executable]} {@job_creation[options]}"
+- pack_id : "with_pack_override"
+  description : "a pack which overrides keep in test"
+  #it is also possible to define default_values at pack level, they will override the one defined at top level.
+  default_values:
+    test:
+      keep: []
+  Tests:    
+  - id: test_3
+    description: "a test where keep is overrided at pack level."
+    data : "simple_example"
+    Tasks:
+    - executable : "echo"
+      options : "the first test of the second pack"
