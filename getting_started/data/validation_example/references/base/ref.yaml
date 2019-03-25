@@ -1,0 +1,6 @@
+- id: ref1
+  description: "a file that contains a value"
+  file: ref1
+- id: ref2
+  description: "another file that contains a value"
+  file: ref2

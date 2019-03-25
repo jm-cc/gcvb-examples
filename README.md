@@ -62,4 +62,16 @@ This example file shows the three ways to do a validation.
 - Using a reference that is configuration dependent (configuration_dependent)
 - Using a comparison vith a file. (file_comparison)
 
-## template_example.yaml
+When comparing to a file, the id of the validation is *{dir}-{ref}* where *dir* is the folder inside 
+the references folder and *ref*, the id in the *ref.yaml* file.
+
+```
+data
+└── validation_example
+    ├── input
+    └── references
+        └── base
+            ├── ref1
+            ├── ref2
+            └── ref.yaml
+```

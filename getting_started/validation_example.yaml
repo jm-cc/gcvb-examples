@@ -1,0 +1,42 @@
+default_values:
+  validation:
+    launch_command: "{@job_creation[va_executable]} {@job_creation[full_id]}.out {@job_creation[va_refdir]}/{@job_creation[va_filename]} {@job_creation[va_id]}"
+
+Packs:
+- pack_id : "Simple"
+  description : "A simple pack."
+  Tests :
+  - 
+    id: valid
+    description: "A simple test"
+    data : "validation_example"
+    Tasks:
+    - executable : "echo"
+      options : "500"
+      launch_command : "{@job_creation[executable]} {@job_creation[options]} > {@job_creation[full_id]}.out"
+      nprocs : 1
+      nthreads : 1
+      Validations:
+        - id: "base-ref1" # the file that will be compared must be check in data/validation_example/references/base/ref.yaml
+          type: "file_comparison"    
+          tolerance: '0.03'
+          executable: diff # this executable is overriden in config.yaml
+          #The launch command is in the default values, it will call the custom_script/diff.py script.
+        - id: "base-ref2"
+          type: "file_comparison"    
+          tolerance: '0.03'
+          executable: diff # this executable is overriden in config.yaml
+        - id: "absolute"
+          type: "configuration_independent"
+          reference: 967
+          tolerance: '0.03'
+          executable: add_custom_metrics
+          launch_command: "{@job_creation[va_executable]}"
+        - id: "host_dependent"
+          type: "configuration_dependent"
+          reference: 
+            yourconfig: 666
+            myconfig: 500
+          tolerance: '0.03'
+          executable: "true" #the value is already filled by the validation "absolute", so we use a no-op executable
+          launch_command: "{@job_creation[va_executable]}"
