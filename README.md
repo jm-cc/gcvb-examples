@@ -95,7 +95,7 @@ In a test, the node *template_files* indicate where to find the files to be adde
 
 As usual, you can see which test will be generated using the subcommand *list*.
 
-# Modify a yaml input file with a python program.
+## Modify a yaml input file with a python program.
 
 You may want to modify an input yaml file with a program. Or use an empty one and create your gcvb base using only a python script.
 
