@@ -76,6 +76,8 @@ data
             └── ref.yaml
 ```
 
+In this example, the scripts *custom_scripts/diff.py* and *custom_scripts/add_custom_metrics.py* are used to fill the database.
+
 ## template_example.yaml
 
 It is also possible to generate test using a template. Some value can be replaced inside the yaml file and in some input files also.
