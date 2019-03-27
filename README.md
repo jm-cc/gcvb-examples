@@ -78,6 +78,14 @@ data
 
 In this example, the scripts *custom_scripts/diff.py* and *custom_scripts/add_custom_metrics.py* are used to fill the database.
 
+```
+#To run this example and get a quick report : 
+python -m gcvb --yaml-file validation_example.yaml generate
+python -m gcvb compute
+python -m gcvb report
+```
+
+
 ## template_example.yaml
 
 It is also possible to generate test using a template. Some value can be replaced inside the yaml file and in some input files also.
