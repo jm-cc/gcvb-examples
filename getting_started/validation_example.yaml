@@ -22,7 +22,9 @@ Packs:
           tolerance: '0.03'
           executable: diff # this executable is overriden in config.yaml
           #The launch command is in the default values, it will call the custom_script/diff.py script.
-        - id: "base-ref2"
+        - id: "different_id" #It is also possible to have an id unrelated to the base and ref we are comparing with.
+          base: "base" #just fill base and ref.
+          ref: "ref2"
           type: "file_comparison"    
           tolerance: '0.03'
           executable: diff # this executable is overriden in config.yaml
