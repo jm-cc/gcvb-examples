@@ -27,3 +27,18 @@ Packs:
       options : "{letter} {number[roman]} {number[id]}"
     - executable : "cat"
       options : "{letter}.txt"
+  - id: "multiple_template_dir"
+    type : "template"
+    template_files : ["afolder","cfolder"] # It is also possible to specify multiple template folders in order to replace or add templated files.
+    data : "template_example"
+    template_instantiation :
+      letter: [C]
+      number : [{id : "100", roman : "C"}]
+    description : "Show multiple template dirs"
+    Tasks:
+    - executable : "cat"
+      options : "A.txt"
+    - executable : "cat"
+      options : "B.txt"
+    - executable : "cat"
+      options : "C.txt"
