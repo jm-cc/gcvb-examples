@@ -65,6 +65,8 @@ This example file shows the three ways to do a validation.
 When comparing to a file, the id of the validation is *{dir}-{ref}* where *dir* is the folder inside 
 the references folder and *ref*, the id in the *ref.yaml* file.
 
+It is also possible to have an id unrelated to the base and ref we are comparing with : just fill *base* and *ref* fields.
+
 ```
 data
 └── validation_example
