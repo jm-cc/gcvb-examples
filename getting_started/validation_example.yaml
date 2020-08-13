@@ -17,28 +17,25 @@ Packs:
       nprocs : 1
       nthreads : 1
       Validations:
-        - id: "base-ref1" # the file that will be compared must be check in data/validation_example/references/base/ref.yaml
-          type: "file_comparison"    
-          tolerance: '0.03'
-          executable: diff # this executable is overriden in config.yaml
+        - type: file_comparison
+          base: base
+          ref: ref1
+          executable: diff
+          Metrics:
+            - {id: base-ref1, tolerance : 0.03, type: "absolute", reference: 0}
           #The launch command is in the default values, it will call the custom_script/diff.py script.
-        - id: "different_id" #It is also possible to have an id unrelated to the base and ref we are comparing with.
-          base: "base" #just fill base and ref.
-          ref: "ref2"
-          type: "file_comparison"    
-          tolerance: '0.03'
+        - type: file_comparison
+          base: base
+          ref: ref2
           executable: diff # this executable is overriden in config.yaml
-        - id: "absolute"
-          type: "configuration_independent"
-          reference: 967
-          tolerance: '0.03'
+          Metrics:
+            - {id: another_metric, tolerance: 0.03} #type = absolute and reference = 0 are default for file_comparison
+        - type: "script"
+          launch_command: "{@job_creation[va_executable]}"
           executable: add_custom_metrics
-          launch_command: "{@job_creation[va_executable]}"
-        - id: "host_dependent"
-          type: "configuration_dependent"
-          reference: 
-            yourconfig: 666
-            myconfig: 500
-          tolerance: '0.03'
-          executable: "true" #the value is already filled by the validation "absolute", so we use a no-op executable
-          launch_command: "{@job_creation[va_executable]}"
+          Metrics:
+            - {id: config_independent_metric, reference: 967, tolerance: 0.03, type: "relative"}
+            - id: config_dependent_metric
+              reference : {yourconfig : 666, myconfig: 500}
+              tolerance: 0.03
+              #type : relative #default value for 'script' validations
