@@ -39,3 +39,7 @@ Packs:
               reference : {yourconfig : 666, myconfig: 500}
               tolerance: 0.03
               #type : relative #default value for 'script' validations
+            - id: missing_metric
+              reference : 0
+              type : "absolute"
+              tolerance : 10
