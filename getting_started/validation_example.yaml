@@ -1,4 +1,7 @@
 default_values:
+  task:
+    launch_command: "{@job_creation[executable]}"
+    options: ""
   validation:
     launch_command: "{@job_creation[va_executable]} {@job_creation[full_id]}.out {@job_creation[va_refdir]}/{@job_creation[va_filename]} {@job_creation[va_id]}"
 
@@ -43,3 +46,12 @@ Packs:
               reference : 0
               type : "absolute"
               tolerance : 10
+  -
+    id: exit_failure
+    description: "This test fails because of a return code that is not 0"
+    data : validation_example
+    Tasks:
+      - executable : "false"
+        nthreads : 1
+        nprocs : 1
+        Validations : []
